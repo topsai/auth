@@ -19,11 +19,23 @@ const Mode = {
 
 export default class App extends Component {
     state = {model: Mode.SIGN_IN};
-    renderContent()
+
+    renderContent() {
+        switch (this.state.mode) {
+            case Mode.SIGN_IN:
+                return <SiginForm/>;
+            case Mode.SIGN_OUT:
+                return <SiginOutForm/>;
+            case Mode.SIGN_UP:
+                return <SiginUpForm/>;
+        }
+    }
+
     render() {
         return (
             <View>
                 <Header>用户认证</Header>
+                {this.renderContent()}
             </View>
         );
     }

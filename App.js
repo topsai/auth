@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {Button, Header, Card, CardSection} from './src/components'
 import {SiginUpForm, SiginOutForm, SiginForm} from './src/forms'
 
@@ -18,7 +18,14 @@ const Mode = {
 };
 
 export default class App extends Component {
-    state = {model: Mode.SIGN_IN};
+    state = {mode: Mode.SIGN_UP};
+    changeState(){
+        if (this.state.mode === Mode.SIGN_IN){
+            this.setState({mode: Mode.SIGN_UP})
+        }else {
+            this.setState({mode: Mode.SIGN_IN})
+        }
+    }
 
     renderContent() {
         switch (this.state.mode) {
@@ -31,12 +38,51 @@ export default class App extends Component {
         }
     }
 
+    renderbtn() {
+        if (this.state.mode !== Mode.SIGN_OUT) {
+            const {viewStyle, buttonStyle, textStyle} = styles;
+            return (
+                <View style={viewStyle}>
+                    <TouchableOpacity
+                        style={buttonStyle}
+                        onPress={this.changeState.bind(this)}
+
+                    >
+                        <Text style={textStyle}>
+                            {this.state.mode === Mode.SIGN_IN ? "新用户注册" : "登录"}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            )
+
+        }
+
+    }
+
     render() {
         return (
             <View>
                 <Header>用户认证</Header>
                 {this.renderContent()}
+                {this.renderbtn()}
             </View>
         );
     }
+}
+
+const styles = {
+    viewStyle: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+    buttonStyle: {
+        padding: 16
+    },
+    textStyle: {
+        fontSize: 13,
+        color: '#007AFF',
+        marginLeft: 16,
+        marginRight: 16,
+    }
+
 }

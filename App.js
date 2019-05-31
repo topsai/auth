@@ -8,8 +8,11 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
-import {Button, Header, Card, CardSection} from './src/components'
-import {SiginUpForm, SiginOutForm, SiginForm} from './src/forms'
+import {Button, Header, Card, CardSection} from './src/components';
+import {SiginUpForm, SiginOutForm, SiginForm} from './src/forms';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import reducers from './src/reducers'
 
 const Mode = {
     SIGN_IN: Symbol('SIGN_IN'),
@@ -19,10 +22,11 @@ const Mode = {
 
 export default class App extends Component {
     state = {mode: Mode.SIGN_UP};
-    changeState(){
-        if (this.state.mode === Mode.SIGN_IN){
+
+    changeState() {
+        if (this.state.mode === Mode.SIGN_IN) {
             this.setState({mode: Mode.SIGN_UP})
-        }else {
+        } else {
             this.setState({mode: Mode.SIGN_IN})
         }
     }
@@ -61,11 +65,14 @@ export default class App extends Component {
 
     render() {
         return (
-            <View>
-                <Header>用户认证</Header>
-                {this.renderContent()}
-                {this.renderbtn()}
-            </View>
+
+            <Provider store={createStore(reducers)}>
+                <View>
+                    <Header>用户认证</Header>
+                    {this.renderContent()}
+                    {this.renderbtn()}
+                </View>
+            </Provider>
         );
     }
 }

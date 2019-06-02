@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import TeachReducer from './TeachReducer'
+import TeachReducer from './TeachReducer';
+import SelectionReducer from './SelectionReducer'
 
 export default combineReducers({
-    techs: TeachReducer
+    techs: TeachReducer,
+    selectTechId: SelectionReducer
 })

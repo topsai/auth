@@ -13,6 +13,7 @@ import {SiginUpForm, SiginOutForm, SiginForm} from './src/forms';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './src/reducers'
+import TeachList from "./App2";
 
 const Mode = {
     SIGN_IN: Symbol('SIGN_IN'),
@@ -66,13 +67,16 @@ export default class App extends Component {
     render() {
         return (
 
-            <Provider store={createStore(reducers)}>
-                <View>
-                    <Header>用户认证</Header>
-                    {this.renderContent()}
-                    {this.renderbtn()}
-                </View>
-            </Provider>
+
+            <View style={{flex: 1}}>
+                <Header>用户认证</Header>
+                {/*{this.renderContent()}*/}
+                {/*{this.renderbtn()}*/}
+                <Provider store={createStore(reducers)}>
+                    <TeachList/>
+                </Provider>
+            </View>
+
         );
     }
 }

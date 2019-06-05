@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import Listitem from './src/reducers/Listitem'
 
 class TeachList extends Component {
-
     render() {
+        console.log('TeachList--->',this);
         return (
                 <FlatList
                     data={this.props.techs}
@@ -14,11 +14,10 @@ class TeachList extends Component {
                 />
         )
     }
-
 }
 
 const mapStateToProps = state => {
-    console.log(state);
-    return {techs: state.techs};
+    // console.log('TechList-state',state);
+    return {techs: state.techs, "a":123};
 };
 export default connect(mapStateToProps)(TeachList);

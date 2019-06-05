@@ -7,16 +7,12 @@ import {connect} from 'react-redux'
 class Listitem extends Component {
     render() {
         const {titleStyle} = styles;
+        console.log("Listitem--->", this);
         return (
             <TouchableWithoutFeedback
-            onPress={()=> this.props.selectTech(this.props.tech.id)}
+                onPress={() => this.props.selectTech(this.props.tech.title)}
             >
                 <View>
-                    <CardSection>
-                        <Text style={titleStyle}>
-                            {this.props.tech.title}
-                        </Text>
-                    </CardSection>
                     <CardSection>
                         <Text style={titleStyle}>
                             {this.props.tech.title}
@@ -34,8 +30,12 @@ const styles = {
     }
 };
 
-const mapStateToProps = state => {
-    console.log(state);
-    return {techs: state.techs};
+const mapStateToProps = (state, ownprops) => {
+    console.log('-->', ownprops);
+    // console.log(ownprops);
+    return {a: 111};
 };
-export default connect(null, actions)(Listitem);
+// mapStateToProps,
+// mapDispatchToProps
+
+export default connect(mapStateToProps, actions)(Listitem);

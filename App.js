@@ -95,5 +95,4 @@ const styles = {
         marginLeft: 16,
         marginRight: 16,
     }
-
-}
+};

@@ -3,6 +3,8 @@ import {View, FlatList, Text} from 'react-native';
 import {connect} from 'react-redux';
 import Listitem from './src/reducers/Listitem'
 
+// 技术栈
+
 class TeachList extends Component {
     render() {
         console.log('TeachList--->',this);

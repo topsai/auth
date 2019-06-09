@@ -69,8 +69,6 @@ const mapStateToProps = (state, ownprops) => {
     if (state.selectTechId === ownprops.tech.title) {
         return {choise: true};
     }
-    // console.log(ownprops);
-    return {a: 111};
 };
 // mapStateToProps,
 // mapDispatchToProps

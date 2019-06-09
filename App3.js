@@ -3,21 +3,20 @@ import {View, Text} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './src/app3-reducers'
+import Login from './src/page/login'
 
 
 class App extends Component {
     render() {
         return (
-            <Provider store={createStore(reducers)}>
-                <View>
-                    <Text>
-                        Menu
-                    </Text>
-                </View>
-            </Provider>
+            <View>
+                <Text>
+                    Menu-s
+                </Text>
+                <Login/>
+            </View>
         )
     }
-
 }
 
 

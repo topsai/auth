@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
+    Button,
     TouchableWithoutFeedback,
     UIManager,
     LayoutAnimation,
@@ -13,13 +14,14 @@ import * as actions from '../actions'
 import {connect} from 'react-redux'
 
 
-const ShowTestItem = (choise, tech) => {
+const ShowTestItem = ({choise, tech, logIn}) => {
     if (choise) {
         return (
             <CardSection>
                 <Text style={styles.titleStyle}>
                     {tech.description}
                 </Text>
+                <Button title={tech.title} onPress={() => logIn('admin', 'admin')}/>
             </CardSection>
         )
     }
@@ -43,7 +45,7 @@ class Listitem extends Component {
         console.log("Listitem--->", this);
         return (
             <TouchableWithoutFeedback
-                onPress={() => this.props.selectTech(this.props.tech.title)}
+                onPress={() => this.props.selectTechs(this.props.tech.title)}
             >
                 <View>
                     <CardSection>
@@ -51,7 +53,7 @@ class Listitem extends Component {
                             {this.props.tech.title}
                         </Text>
                     </CardSection>
-                    {ShowTestItem(this.props.choise, this.props.tech)}
+                    {ShowTestItem(this.props)}
                 </View>
             </TouchableWithoutFeedback>
         )
@@ -70,7 +72,6 @@ const mapStateToProps = (state, ownprops) => {
         return {choise: true};
     }
     // console.log(ownprops);
-    return {a: 111};
 };
 // mapStateToProps,
 // mapDispatchToProps
